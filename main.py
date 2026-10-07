@@ -18,6 +18,7 @@ cur = conn.cursor()
 #   VALUES 
 #       ('Sofia Ramirez', 'sofia.ramirez@example.com'),
 #       ('Devon Blake', 'devon.blake@example.com');
+#       ('Test User', 'test@test.com');
 #""")
 
 #conn.commit()
@@ -32,5 +33,16 @@ cur.execute("""
 """)
 
 conn.commit()
+
+cur.execute("""
+    DELETE FROM users
+    WHERE name = 'Test User';
+""")
+
+conn.commit()
+
+cur.execute("""
+    ALTER TABLE users ADD COLUMN phone_number TEXT;
+""")
 
 conn.close()
